@@ -1,0 +1,22 @@
+#felica_auth_device_state {
+	background-image: url('felica-auth.gif');
+	background-position: 3px 50%;
+	background-repeat: no-repeat; 
+	padding-left: 21px !important; 
+}
+
+body.login #felica_auth_device_state {
+	width: 92%;
+	font-size: 20px;
+	background-color: #FFF;
+	border: 1px solid #ccc;
+	padding: 3px 3px 3px 18px;
+	margin-right: 6px;
+}
+
+/* fix link color on wp-login.php */
+body.login form#loginform a.legacy, 
+body.login form#registerform a.legacy {
+	color: #FFF;
+}
+
