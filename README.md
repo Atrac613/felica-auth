@@ -13,6 +13,7 @@ Contacts
 -------
 
 Source Code Repository: [FeliCa Auth - GitHub][felicaauth]
+
 Twitter: [Atrac613][twitter]
 
 [twitter]: http://twitter.com/Atrac613
