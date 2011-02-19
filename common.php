@@ -57,6 +57,7 @@ function felica_auth_uninstall_plugin() {
 	delete_option('felica_auth_plugin_enabled');
 	delete_option('felica_auth_plugin_revision');
 	delete_option('felica_auth_db_revision');
+	//delete_option('felica_auth_blog_owner');
 
 	// historical options
 	//felica_auth_remove_historical_options();

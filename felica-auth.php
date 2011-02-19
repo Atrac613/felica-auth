@@ -58,6 +58,18 @@ function get_user_felica_ids($id_or_name = null) {
 }
 
 /**
+ * Get the FeliCa Auth identities for the all user.
+ *
+ * @return array array of user's FeliCa Auth identities
+ * @access public
+ * @since 1.0
+ */
+function get_alluser_felica_ids() {
+	global $wpdb;
+	return $wpdb->get_results( 'SELECT felica_auth_id, secret_key, user_id FROM '.felica_auth_identity_table() );
+}
+
+/**
  * Get the user associated with the specified FeliCa Auth.
  *
  * @param string $secret_key identifier to match

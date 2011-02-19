@@ -19,4 +19,6 @@ body.login form#loginform a.legacy,
 body.login form#registerform a.legacy {
 	color: #FFF;
 }
-
+.username-column {
+	width: 100px;
+}
