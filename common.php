@@ -28,6 +28,10 @@ function felica_auth_activate_plugin() {
 	add_option( 'felica_auth_plugin_enabled', true );
 	add_option( 'felica_auth_plugin_revision', 0 );
 	add_option( 'felica_auth_db_revision', 0 );
+	
+	// Add server token.
+	$server_token = hash("sha512", $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . uniqid());
+	add_option( 'felica_auth_server_token', $server_token );
 
 	felica_auth_create_tables();
 	//felica_auth_migrate_old_data();
@@ -62,6 +66,18 @@ function felica_auth_uninstall_plugin() {
 	// historical options
 	//felica_auth_remove_historical_options();
 }
+
+/**
+ * Generate secret_key from raw felica identifier.
+ */
+function felica_auth_generate_secret_key($raw) {
+	if(empty($raw)) return;
+	
+	$server_token = get_option('felica_auth_server_token');
+	
+	return hash("sha512", $server_token . $raw);
+}
+
 
 /**
  * Include FeliCa Auth stylesheet.  

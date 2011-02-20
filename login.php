@@ -74,8 +74,8 @@ function felica_auth_wp_login_head() {
  * @action: login_form
  **/
 function felica_auth_wp_login_form() {
+	$server_token = get_option('felica_auth_server_token');
 	echo '<hr id="felica_auth_split" style="clear: both; margin-bottom: 1.0em; border: 0; border-top: 1px solid #999; height: 1px;" />';
-//width="280" height="180"
 	echo '
 	<p style="margin-bottom: 8px;">
 		<label style="display: block; margin-bottom: 5px;">' . __('Or login using an FeliCa', 'felica_auth') . ' | <span id="felica_auth_debug_flag">Debug On</span><br />
@@ -88,9 +88,11 @@ function felica_auth_wp_login_form() {
 				<param name="movie" value="' . plugins_url('felica-auth/f/felica-auth.swf') .'" />
 				<param name="quality" value="high" />
 				<param name="bgcolor" value="" />
+				<param name="flashVars" value="serverToken=' . $server_token . '" />
 				<param name="allowScriptAccess" value="always" />
 				<embed src="' . plugins_url('felica-auth/f/felica-auth.swf') .'" quality="high" bgcolor=""
 					width="1" height="1" name="FeliCaAuth" align="middle"
+					flashVars="serverToken=' . $server_token . '"
 					play="true"
 					loop="false"
 					quality="high"

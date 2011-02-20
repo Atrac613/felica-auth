@@ -53,7 +53,6 @@ function felica_auth_profile_management() {
 			check_admin_referer('felica-auth-add_felicaid');
 
 			$user = wp_get_current_user();
-
 			$userid = get_user_by_felica($_POST['felica_auth_identifier']);
 
 			if ($userid) {
@@ -106,6 +105,23 @@ function felica_auth_profile_management() {
 }
 
 /**
+ * Update the FeliCa Auth options.
+ */
+function felica_auth_options_update() {
+	if(!empty($_REQUEST['server_token'])){
+		update_option('felica_auth_server_token', $_REQUEST['server_token']);
+	}
+	
+	if(!empty($_REQUEST['reset_server_token'])){
+		$server_token = hash("sha512", $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . uniqid());
+		update_option('felica_auth_server_token', $server_token);
+	}
+	
+	felica_auth_message( __('Updated options.', 'felica_auth') );
+	felica_auth_status('success');
+}
+
+/**
  * Handle FeliCa Auth options management.
  */
 function felica_auth_options_management() {
@@ -114,6 +130,10 @@ function felica_auth_options_management() {
 	wp_reset_vars( array('action') );
 
 	switch( $action ) {
+		case 'update':
+			felica_auth_options_update();
+			break;
+			
 		case 'delete':
 			felica_auth_options_delete_felica_ids($_REQUEST['delete']);
 			break;
@@ -281,7 +301,9 @@ function felica_auth_profile_panel() {
 		echo '<div class="error"><p><strong>'.__('Error:', 'felica_auth').'</strong> '.$error.'</p></div>';
 		unset($error);
 	}
-
+	
+	$server_token = get_option('felica_auth_server_token');
+	
 	screen_icon('felica_auth');
 	?>
 	<style type="text/css">
@@ -355,9 +377,11 @@ function felica_auth_profile_panel() {
 							<param name="movie" value="<?php echo plugins_url('felica-auth/f/felica-auth.swf') ?>" />
 							<param name="quality" value="high" />
 							<param name="bgcolor" value="" />
+							<param name="flashVars" value="serverToken=<?php echo $server_token ?>" />
 							<param name="allowScriptAccess" value="always" />
 							<embed src="<?php echo plugins_url('felica-auth/f/felica-auth.swf') ?>" quality="high" bgcolor=""
 								width="1" height="1" name="FeliCaAuth" align="middle"
+								flashVars="serverToken=<?php echo $server_token ?>"
 								play="true"
 								loop="false"
 								quality="high"
@@ -407,6 +431,8 @@ function felica_auth_options_page() {
 		unset($error);
 	}
 	
+	$server_token = get_option('felica_auth_server_token');
+	
 	screen_icon('felica_auth');
 	?>
 	<style type="text/css">
@@ -414,63 +440,80 @@ function felica_auth_options_page() {
 	</style>
 
 	<div class="wrap">
-			<form action="<?php printf('%s?page=%s', $_SERVER['PHP_SELF'], $_REQUEST['page']); ?>" method="post">
-			<h2><?php _e('Verified FeliCa', 'felica_auth') ?></h2>
-			
-			<div class="tablenav">
-			<div class="alignleft actions">
-				<select name="action">
-					<option value="-1" selected="selected"><?php _e('Bulk Actions'); ?></option>
-					<option value="delete"><?php _e('Delete'); ?></option>
-				</select>
-				<input type="submit" value="<?php _e('Apply'); ?>" name="doaction" id="doaction" class="button-secondary action" />
-				<?php wp_nonce_field('felica-auth-delete_felica_ids'); ?>
-			</div>
-			<div class="clear"></div>
-			</div>
+		<form action="<?php printf('%s?page=%s', $_SERVER['PHP_SELF'], $_REQUEST['page']); ?>" method="post">
+		<h2><?php _e('Verified FeliCa', 'felica_auth') ?></h2>
+		
+		<div class="tablenav">
+		<div class="alignleft actions">
+			<select name="action">
+				<option value="-1" selected="selected"><?php _e('Bulk Actions'); ?></option>
+				<option value="delete"><?php _e('Delete'); ?></option>
+			</select>
+			<input type="submit" value="<?php _e('Apply'); ?>" name="doaction" id="doaction" class="button-secondary action" />
+			<?php wp_nonce_field('felica-auth-delete_felica_ids'); ?>
+		</div>
+		<div class="clear"></div>
+		</div>
 
-			<div class="clear"></div>
-	
-			<table class="widefat">
-				<thead>
-					<tr>
-						<th scope="col" class="check-column"><input type="checkbox" /></th>
-						<th scope="col" class="username-column"><?php _e('Username', 'felica_auth'); ?></th>
-						<th scope="col"><?php _e('FeliCa', 'felica_auth'); ?></th>
-					</tr>
-				</thead>
-				<tbody>
-	
-				<?php
-					$felica_ids = get_alluser_felica_ids();
-					if (empty($felica_ids)) {
-						echo '<tr><td colspan="2">'.__('No Verified FeliCa.', 'felica_auth').'</td></tr>';
-					} else {
-						$sorted_felica_ids = array();
-						$secret_keys = array();
-						foreach ($felica_ids as $felica_id) {
-							$user_info = get_userdata($felica_id->user_id);
-							$sorted_felica_ids[$felica_id->felica_auth_id] = $user_info->user_login;
-							$secret_keys[$felica_id->felica_auth_id] = $felica_id->secret_key;
-						}
-						asort($sorted_felica_ids);
-						
-						foreach ($sorted_felica_ids as $key => $username) {
-							
-							echo '
-							<tr>
-								<th scope="row" class="check-column"><input type="checkbox" name="delete[]" value="'.md5($secret_keys[$key]).'" /></th>
-								<td class="username-column">'.$username.'</td>
-								<td>'.felica_auth_display_identity($secret_keys[$key]).'</td>
-							</tr>';
-						}
+		<div class="clear"></div>
+
+		<table class="widefat">
+			<thead>
+				<tr>
+					<th scope="col" class="check-column"><input type="checkbox" /></th>
+					<th scope="col" class="username-column"><?php _e('Username', 'felica_auth'); ?></th>
+					<th scope="col"><?php _e('FeliCa', 'felica_auth'); ?></th>
+				</tr>
+			</thead>
+			<tbody>
+
+			<?php
+				$felica_ids = get_alluser_felica_ids();
+				if (empty($felica_ids)) {
+					echo '<tr><td colspan="2">'.__('No Verified FeliCa.', 'felica_auth').'</td></tr>';
+				} else {
+					$sorted_felica_ids = array();
+					$secret_keys = array();
+					foreach ($felica_ids as $felica_id) {
+						$user_info = get_userdata($felica_id->user_id);
+						$sorted_felica_ids[$felica_id->felica_auth_id] = $user_info->user_login;
+						$secret_keys[$felica_id->felica_auth_id] = $felica_id->secret_key;
 					}
+					asort($sorted_felica_ids);
+					
+					foreach ($sorted_felica_ids as $key => $username) {
+						
+						echo '
+						<tr>
+							<th scope="row" class="check-column"><input type="checkbox" name="delete[]" value="'.md5($secret_keys[$key]).'" /></th>
+							<td class="username-column">'.$username.'</td>
+							<td>'.felica_auth_display_identity($secret_keys[$key]).'</td>
+						</tr>';
+					}
+				}
+
+			?>
+			</tbody>
+			</table>
+		</form>
+	</div>
 	
-				?>
-				</tbody>
-				</table>
-			</form>
-			
+	<div class="wrap">
+		<form action="<?php printf('%s?page=%s', $_SERVER['PHP_SELF'], $_REQUEST['page']); ?>" method="post">
+		<h2><?php _e('Others', 'felica_auth') ?></h2>
+		<table class="form-table optiontable editform">
+			<tr valign="top">
+				<th scope="row"><?php _e('Server Token', 'felica_auth') ?></th>
+				<td>
+					<p><?php _e('If you change this setting, the ALL FeliCa needs to be re-registration.', 'felica_auth'); ?></p>
+					<input type="text" name="server_token" value="<?php echo $server_token; ?>" size="50" />
+					&nbsp;<label><input type="checkbox" name="reset_server_token" value="1" />Reset</label>
+				</td>
+			</tr>
+		</table>
+		<?php settings_fields('felica_auth'); ?>
+		<p class="submit"><input type="submit" class="button-primary" name="info_update" value="<?php _e('Save Changes') ?>" /></p>
+		</form>
 	</div>
 		<?php
 }
