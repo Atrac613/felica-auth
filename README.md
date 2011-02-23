@@ -9,7 +9,36 @@ FeliCa Auth は WordPress の認証機構を FeliCa を利用して行うプラ�
 
 著作権など問題がありましたらご指摘くださいませ。
 
-Contacts
+必要なもの
+-------
+
+FeliCa Auth は PaSoRi を利用してFeliCaの読み取りを行っています。ご利用のPaSoRiをご用意ください。
+
+また、FeliCaを接続するパソコンでは下記ソフトウェアをインストールしてください。
+
+* [PC - FeliCaポートソフトウェア][felicasoftware1]
+* [mac - FeliCa Proxy][felicasoftware2]
+
+使い方（FeliCaの登録）
+-------
+
+1. 通常のパスワードでログインする。
+2. サイドメニューのユーザーからYour FeliCaをクリックする。
+3. FeliCa StandBy. が表示されたらFeliCaをかざす。
+4. FeliCa Detected. が表示されたら送信ボタンをクリックする。
+
+* 一つのアカウントで複数のFeliCaを登録する事ができます。
+* FeliCa一枚に対して登録できるアカウントは一つまでです。
+
+使い方（ログイン）
+-------
+
+1. PaSoRi をパソコンに接続する。
+2. ログイン画面を開く。
+3. FeliCa StandBy. が表示されたらFeliCaをかざす。
+4. FeliCa Detected. が表示されたらログインボタンをクリックする。
+
+連絡先
 -------
 
 Source Code Repository: [FeliCa Auth - GitHub][felicaauth]
@@ -19,3 +48,6 @@ Twitter: [Atrac613][twitter]
 [twitter]: http://twitter.com/Atrac613
 [openid]: http://wordpress.org/extend/plugins/openid
 [felicaauth]: https://github.com/Atrac613/felica-auth
+[felicasoftware1]: http://www.sony.co.jp/Products/felica/consumer/download/felicaportsoftware.html
+[felicasoftware2]: http://blog.felicalauncher.com/sdk_for_air/?p=2617
+
