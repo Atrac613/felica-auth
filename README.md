@@ -27,8 +27,10 @@ FeliCa Auth は [PaSoRi][pasori]  を利用して FeliCa の読み取りを行�
 3. FeliCa StandBy.  が表示されたら FeliCa をかざす。
 4. FeliCa Detected.  が表示されたら送信ボタンをクリックする。
 
- * 一つのアカウントで複数の FeliCa を登録する事ができます。
- * FeliCa 一枚に対して登録できるアカウントは一つまでです。
+---
+
+* 一つのアカウントで複数の FeliCa を登録する事ができます。
+* FeliCa 一枚に対して登録できるアカウントは一つまでです。
 
 使い方（ログイン）
 -------
