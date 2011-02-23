@@ -21,6 +21,13 @@ FeliCa Auth は [PaSoRi][pasori]  を利用して FeliCa の読み取りを行�
 * [PC - FeliCa ポートソフトウェア][felicasoftware1]
 * [mac - FeliCa Proxy][felicasoftware2]
 
+プラグインのインストール方法
+------
+
+WordPress 内プラグインディレクトリにて下記を実行。
+
+    # git clone https://github.com/Atrac613/felica-auth.git
+
 使い方（FeliCa の登録）
 -------
 
