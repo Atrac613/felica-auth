@@ -12,7 +12,9 @@ FeliCa Auth は WordPress の認証機構を FeliCa を利用して行うプラ�
 必要なもの
 -------
 
-FeliCa Auth は [PaSoRi][pasori]  を利用して FeliCa の読み取りを行っています。ご利用の PaSoRi をご用意ください。
+FeliCa Auth は [PaSoRi][pasori]  を利用して FeliCa の読み取りを行っています。
+
+プラグインご利用の方は PaSoRi をご用意ください。
 
 また、FeliCa を接続するパソコンでは下記ソフトウェアをインストールしてください。
 
