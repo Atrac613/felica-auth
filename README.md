@@ -1,7 +1,7 @@
 FeliCa Auth
 =============
 
-FeliCa Auth は WordPress の認証機構を FeliCa を利用して行うプラグインです。
+FeliCa Auth は WordPress の認証機構を FeliCa で行うプラグインです。
 
 このプログラムのほとんどは別の WordPress のプラグインである [OpenID][openid] を参考にして作られています。
 
