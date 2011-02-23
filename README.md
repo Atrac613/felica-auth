@@ -18,7 +18,7 @@ FeliCa Auth は [PaSoRi][pasori]  を利用して FeliCa の読み取りを行�
 
 また、FeliCa を接続するパソコンでは下記ソフトウェアをインストールしてください。
 
-* [PC - FeliCaポートソフトウェア][felicasoftware1]
+* [PC - FeliCa ポートソフトウェア][felicasoftware1]
 * [mac - FeliCa Proxy][felicasoftware2]
 
 使い方（FeliCa の登録）
@@ -42,6 +42,15 @@ FeliCa Auth は [PaSoRi][pasori]  を利用して FeliCa の読み取りを行�
 2. ログイン画面を開く。
 3. FeliCa StandBy.  が表示されたら FeliCa をかざす。
 4. FeliCa Detected.  が表示されたらログインボタンをクリックする。
+
+技術的な話
+-------
+
+Q: FeliCa 識別情報はそのままサーバーに送信されるの？
+
+A: いいえ。プラグインで利用する FeliCa 識別情報 imm、pmm はハッシュ化されサーバーに送信されます。またハッシュを生成する際には各ブログ毎に違うハッシュが生成されますので複数のブログ間で同じハッシュ情報ではログイン（二次利用は）できません。（通信経路内でハッシュが漏れた場合など）
+
+また、ハッシュの生成はローカル（SWF）で行われます。
 
 連絡先 & リポジトリ
 -------
