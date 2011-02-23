@@ -24,10 +24,11 @@ FeliCa Auth は [PaSoRi][pasori]  を利用して FeliCa の読み取りを行�
 使い方（FeliCa の登録）
 -------
 
-1. 通常のパスワードでログインする。
-2. サイドメニューのユーザーから Your FeliCa をクリックする。
-3. FeliCa StandBy.  が表示されたら FeliCa をかざす。
-4. FeliCa Detected.  が表示されたら送信ボタンをクリックする。
+1. PaSoRi をパソコンに接続する。
+2. 通常のパスワードでログインする。
+3. サイドメニューのユーザーから Your FeliCa をクリックする。
+4. FeliCa StandBy.  が表示されたら FeliCa をかざす。
+5. FeliCa Detected.  が表示されたら送信ボタンをクリックする。
 
 ---
 
@@ -42,16 +43,19 @@ FeliCa Auth は [PaSoRi][pasori]  を利用して FeliCa の読み取りを行�
 3. FeliCa StandBy.  が表示されたら FeliCa をかざす。
 4. FeliCa Detected.  が表示されたらログインボタンをクリックする。
 
-連絡先
+連絡先 & リポジトリ
 -------
 
 Source Code Repository: [FeliCa Auth - GitHub][felicaauth]
+
+Source Code Repository: [FeliCa Auth SWF - GitHub][felicaauthswf]
 
 Twitter: [Atrac613][twitter]
 
 [twitter]: http://twitter.com/Atrac613
 [openid]: http://wordpress.org/extend/plugins/openid
 [felicaauth]: https://github.com/Atrac613/felica-auth
+[felicaauthswf]: https://github.com/Atrac613/felica-auth-swf
 [felicasoftware1]: http://www.sony.co.jp/Products/felica/consumer/download/felicaportsoftware.html
 [felicasoftware2]: http://blog.felicalauncher.com/sdk_for_air/?p=2617
 [pasori]: http://amzn.to/fSvLeu
