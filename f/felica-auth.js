@@ -64,7 +64,7 @@ function faDebugMode(){
 }
 
 function faSetDeviceStateStandBy(){
-	document.getElementById("felica_auth_device_state").value = "FeliCa StandBy.";
+	document.getElementById("felica_auth_device_state").value = "FeliCa Standby.";
 }
 
 function faSetDeviceStateDisconnected(){
