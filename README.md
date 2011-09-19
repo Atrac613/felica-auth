@@ -70,6 +70,8 @@ Source Code Repository: [FeliCa Auth - GitHub][felicaauth]
 
 Source Code Repository: [FeliCa Auth SWF - GitHub][felicaauthswf]
 
+BLOG: [WordPress を FeliCa で認証する - Technologic][blog]
+
 Twitter: [Atrac613][twitter]
 
 [twitter]: http://twitter.com/Atrac613
@@ -79,4 +81,4 @@ Twitter: [Atrac613][twitter]
 [felicasoftware1]: http://www.sony.co.jp/Products/felica/consumer/download/felicaportsoftware.html
 [felicasoftware2]: http://blog.felicalauncher.com/sdk_for_air/?p=2617
 [pasori]: http://amzn.to/fSvLeu
-
+[blog]: http://blog.atrac613.io/2011/09/08/wp-felica-auth/
