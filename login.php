@@ -109,7 +109,7 @@ function felica_auth_wp_login_form() {
 	</p>
 
 	<p style="font-size: 0.9em; margin: 8px 0 24px 0;" id="what_is_felica_auth">
-		<a href="#" target="_blank">'.__('Learn about FeliCa Auth', 'felica_auth').'</a>
+		<a href="https://github.com/Atrac613/felica-auth" target="_blank">'.__('Learn about FeliCa Auth', 'felica_auth').'</a>
 	</p>
 	
 	';

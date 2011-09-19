@@ -316,7 +316,7 @@ function felica_auth_profile_panel() {
 
 			<p><?php _e('You may associate one or more FeliCa with your account.  This will '
 			. 'allow you to login to WordPress with your FeliCa instead of a username and password.  '
-			. '<a href="#" target="_blank">Learn more...</a>', 'felica_auth')?></p>
+			. '<a href="https://github.com/Atrac613/felica-auth" target="_blank">Learn more...</a>', 'felica_auth')?></p>
 
 		<div class="tablenav">
 			<div class="alignleft actions">
